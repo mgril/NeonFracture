@@ -17,7 +17,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var heal_player_vfx = $Model/VFXSmoke/HEAL_Player_VFX
 
 
-const maxHealth = 3
+const maxHealth = 4
 var currentHealth
 var controllable = true 
 var isInvincible = false
