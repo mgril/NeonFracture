@@ -6,7 +6,9 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 22 
 
-# Get the gravity from the settings to be synced with RigidBody nodes. Do we need this comment?
+
+# Get the gravity from the project settings to be synced with RigidBody nodes.
+
 
 
 # there is a problem gravity is not adjust for the jump 
@@ -17,7 +19,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var heal_player_vfx = $Model/VFXSmoke/HEAL_Player_VFX
 
 
-const maxHealth = 4
+const maxHealth = 3
+
 var currentHealth
 var controllable = true 
 var isInvincible = false
