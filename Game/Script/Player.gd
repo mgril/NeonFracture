@@ -6,7 +6,7 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 22 
 
-# Get the gravity from the project settings to be synced with RigidBody nodes. Do we need this comment?
+# Get the gravity from the settings to be synced with RigidBody nodes. Do we need this comment?
 
 
 # there is a problem gravity is not adjust for the jump 
