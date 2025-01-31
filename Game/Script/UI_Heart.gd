@@ -8,7 +8,9 @@ var heartTextureRectArray: Array[TextureRect]
 func _ready():
 	var player = get_tree().get_root().get_node("Root").get_node("Player")
 	player.currentHealthUpdated.connect(updateHearts)
-# TODO add heart on max life update uilife
+
+	# TODO number of hearts depending on player max health
+
 	for item in get_children(): 
 		heartTextureRectArray.append(item)
 func updateHearts(newValue): 
