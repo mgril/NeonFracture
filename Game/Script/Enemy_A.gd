@@ -38,3 +38,7 @@ func _physics_process(delta):
 	velocity.x = direction * SPEED		
 
 	move_and_slide()
+
+
+func _on_area_3d_body_entered(body):
+	body.applyDamage()
