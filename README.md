@@ -9,15 +9,21 @@ Objectif final du jeu:
   Vue : 2.5D jeu de plateforme.
   
   Mécaniques principales :
+  
   Collecte : 
-    Le joueur doit ramasser des "fragments de données" pour progresser dans le niveau.
+    
+      Le joueur doit ramasser des "fragments de données" pour progresser dans le niveau.
+      
   Progression dynamique : 
-    À chaque collecte, le monde devient plus instable:
-      déblocage du niveau suivant avec réunion de tous les fragments récupérés dans le niveau
-        Premier niveau : Peu de surcharge visuelle, quelques ennemis lents.
-        Niveaux intermédiaires : Plateformes mouvantes, glitchs légers, ennemis plus rapides.
-        Derniers niveaux : Chaos total : distorsions visuelles, plateformes instables, obstacles imprévisibles.
+  
+      À chaque collecte, le monde devient plus instable:
+        Déblocage du niveau suivant avec réunion de tous les fragments récupérés dans le niveau
+          Premier niveau : Peu de surcharge visuelle, quelques ennemis lents.
+          Niveaux intermédiaires : Plateformes mouvantes, glitchs légers, ennemis plus rapides.
+          Derniers niveaux : Chaos total : distorsions visuelles, plateformes instables, obstacles imprévisibles.
+          
   Objectif du joueur :
+  
     Atteindre la fin du niveau en ayant collecté suffisamment de fragments pour restaurer un réseau sans succomber au chaos croissant.
 
     
