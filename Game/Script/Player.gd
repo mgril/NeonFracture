@@ -59,8 +59,8 @@ func _process(delta):
 		controllable = false
 		uncontrollableRemain += meleeAttackCooldown
 		
-		#animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
-		#animation_player_blade_vfx.play("PlayerBladeVFX")
+		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		animation_player_blade_vfx.play("PlayerBladeVFX")
 		
 		area_3d_hit_box.monitoring = true 
 		await get_tree().create_timer(0.3).timeout
@@ -167,3 +167,11 @@ func addHealth():
 
 func _on_area_3d_hit_box_body_entered(body):
 	body.applyDamage(meleeAttackDamage)
+	
+	var vfx_position = body.global_position
+	vfx_position.y += 1.5
+	vfx_position.z += 1
+	melee_vfx.global_position = vfx_position
+	
+	for item in melee_vfx.get_children():
+		item.restart()
