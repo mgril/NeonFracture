@@ -5,6 +5,7 @@ extends Control
 func _ready():
 	var player = get_tree().get_root().get_node("Root").get_node("Player")
 	player.currentHealthUpdated.connect(checkGameOver)
+	player.playerHasReachedTheDoor.connect(showGameOverUI)
 	visible = false
 
 func showGameOverUI():

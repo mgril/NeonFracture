@@ -6,7 +6,6 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 22 
 
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
 # there is a problem gravity is not adjust for the jump 
@@ -30,7 +29,11 @@ var getHurtCooldown = 1
 var meleeAttackCooldown = 0.6
 var meleeAttackDamage = 10
 
+var invincibilityRemain = 0
+var invincibilityDuration = 2
+
 signal currentHealthUpdated(newValue)
+signal playerHasReachedTheDoor()
 
 func _ready():
 	currentHealth = maxHealth 
@@ -46,14 +49,22 @@ func _process(delta):
 	
 	if is_on_floor():
 		animation_tree.changeStateToNormal()
+		print("hello")
 	else: 
 		animation_tree.changeStateToAirBorne()
 
-	if controllable == false && currentHealth > 0 : 
+	if controllable == false && currentHealth > 0 && uncontrollableRemain > 0: 
 		uncontrollableRemain -= delta
 		if uncontrollableRemain <= 0:
 			uncontrollableRemain = 0
 			controllable = true
+			
+	if isInvincible == true && invincibilityRemain > 0:
+		invincibilityRemain -= delta
+		if invincibilityRemain <= 0 :
+			invincibilityRemain = 0
+			isInvincible = false
+			animation_player_material.play("RESET")
 	
 	if controllable == true && Input.is_action_just_pressed("MeleeAttack"):
 		controllable = false
@@ -111,8 +122,6 @@ func handleMovementVFX():
 		if animation_tree.checkIfStateIsAirborne(): 
 			playGroundSmokeVFX()
 		
-		
-		
 func playGroundSmokeVFX():
 	var vfxToSpawn = preload("res://Asset/VFX/Scene/land_vfx.tscn")
 	var vfxInstance = vfxToSpawn.instantiate()
@@ -132,6 +141,7 @@ func applyDamage():
 	controllable = false
 	uncontrollableRemain += getHurtCooldown
 	isInvincible = true
+	invincibilityRemain = invincibilityDuration
 	emit_signal("currentHealthUpdated", currentHealth)
 	print(currentHealth)
 	
@@ -142,10 +152,6 @@ func applyDamage():
 		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		animation_player_material.play("Flash_Invincible")
-		
-		await get_tree().create_timer(2.0).timeout
-		animation_player_material.play("RESET")
-		isInvincible = false
 	
 func updateHorizontalVelocity():
 	velocity.x = move_toward(velocity.x, 0, 1)
@@ -175,3 +181,13 @@ func _on_area_3d_hit_box_body_entered(body):
 	
 	for item in melee_vfx.get_children():
 		item.restart()
+
+func reachedTheDoor():
+	controllable = false
+	uncontrollableRemain = -1
+	emit_signal("playerHasReachedTheDoor")
+	
+	isInvincible = true
+	invincibilityRemain = -1
+	animation_player_material.play("RESET")
+	
