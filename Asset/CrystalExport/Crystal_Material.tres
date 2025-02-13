@@ -1,0 +1,19 @@
+[gd_resource type="StandardMaterial3D" load_steps=7 format=3 uid="uid://b5n8yt4bkbwy8"]
+
+[ext_resource type="Texture2D" uid="uid://cnhlb636etp" path="res://Asset/CrystalExport/low_blinn2_BaseColor.png" id="1_tegvr"]
+[ext_resource type="Texture2D" uid="uid://bekhftyli0b4p" path="res://Asset/CrystalExport/low_blinn2_Emissive.png" id="2_wfbil"]
+[ext_resource type="Texture2D" uid="uid://505th0hk0h4c" path="res://Asset/CrystalExport/low_blinn2_Height.png" id="3_u0w1b"]
+[ext_resource type="Texture2D" uid="uid://c52sguvtcye7a" path="res://Asset/CrystalExport/low_blinn2_Metallic.png" id="4_i4w48"]
+[ext_resource type="Texture2D" uid="uid://bc73p71au6d6b" path="res://Asset/CrystalExport/low_blinn2_Normal.png" id="5_fc5sh"]
+[ext_resource type="Texture2D" uid="uid://cmxpcqbo8vp0y" path="res://Asset/CrystalExport/low_blinn2_Roughness.png" id="6_dsgy5"]
+
+[resource]
+albedo_texture = ExtResource("1_tegvr")
+metallic = 1.0
+metallic_texture = ExtResource("4_i4w48")
+roughness_texture = ExtResource("6_dsgy5")
+emission_enabled = true
+emission_texture = ExtResource("2_wfbil")
+normal_enabled = true
+normal_texture = ExtResource("5_fc5sh")
+heightmap_texture = ExtResource("3_u0w1b")

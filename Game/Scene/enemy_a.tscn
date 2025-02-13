@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://co8sj5uhq8gy2"]
+[gd_scene load_steps=17 format=3 uid="uid://co8sj5uhq8gy2"]
 
 [ext_resource type="Script" path="res://Game/Script/Enemy_A.gd" id="1_7tcu0"]
 [ext_resource type="Material" uid="uid://6y8a7flk0cxy" path="res://Asset/Characters/NPC/NPC_01/npc_01_material.tres" id="2_h0ul4"]
@@ -2303,13 +2303,49 @@ _data = {
 "NPC_01_WALK": SubResource("Animation_ff0hx")
 }
 
+[sub_resource type="Animation" id="Animation_sar76"]
+resource_name = "Flash"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode/GAME RIG 01/Skeleton3D/NPC 01 Mesh:material_override:shader_parameter/FlashEffect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4e61y"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootNode/GAME RIG 01/Skeleton3D/NPC 01 Mesh:material_override:shader_parameter/FlashEffect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eo54g"]
+_data = {
+"Flash": SubResource("Animation_sar76"),
+"RESET": SubResource("Animation_4e61y")
+}
+
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tfp3h"]
 height = 2.51793
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_uw5jg"]
 
 [node name="Enemy_A" type="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.1716, 7.58136, -0.139257)
 collision_layer = 4
 script = ExtResource("1_7tcu0")
 
@@ -2651,9 +2687,20 @@ material_override = ExtResource("2_h0ul4")
 mesh = SubResource("ArrayMesh_sx5pe")
 skin = SubResource("Skin_ck2cn")
 
+[node name="NPC 01 Mesh" type="MeshInstance3D" parent="Model/RootNode/GAME RIG 01/Skeleton3D/NPC 01 Mesh"]
+transform = Transform3D(1, -3.55271e-15, -2.11758e-22, 7.10543e-15, 1, 3.55271e-15, 0, -3.55271e-15, 1, 0, 0, 0)
+material_override = ExtResource("2_h0ul4")
+mesh = SubResource("ArrayMesh_sx5pe")
+skin = SubResource("Skin_ck2cn")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Model"]
 libraries = {
 "": SubResource("AnimationLibrary_fyt4q")
+}
+
+[node name="AnimationPlayer_Material" type="AnimationPlayer" parent="Model"]
+libraries = {
+"": SubResource("AnimationLibrary_eo54g")
 }
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

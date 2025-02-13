@@ -14,9 +14,10 @@ const JUMP_VELOCITY = 22
 # there is a problem gravity is not adjust for the jump 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_tree = $Model/AnimationTree
-@onready var footstep_vfx = $Model/VFXSmoke/Footstep_VFX
+@onready var footstep_vfx = $Model/RootNode/VFX/Footstep_VFX
 @onready var animation_player_material = $Model/AnimationPlayer_Material
-@onready var heal_player_vfx = $Model/VFXSmoke/HEAL_Player_VFX
+@onready var heal_player_vfx = $Model/RootNode/VFX/HEAL_Player_VFX
+@onready var melee_vfx = $Model/RootNode/VFX/MELEE_VFX
 
 
 const maxHealth = 3
