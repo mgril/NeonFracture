@@ -14,6 +14,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var ray_cast_3d_downward = $CollisionShape3D/RayCast3D_Downward
 @onready var animation_player_material = $Model/AnimationPlayer_Material
 
+
+
 var direction
 var facingRight = true
 

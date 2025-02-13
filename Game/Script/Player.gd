@@ -16,6 +16,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player_material = $Model/AnimationPlayer_Material
 @onready var heal_player_vfx = $Model/RootNode/VFX/HEAL_Player_VFX
 @onready var melee_vfx = $Model/RootNode/VFX/MELEE_VFX
+@onready var area_3d_hit_box = $Model/RootNode/Area3D_HitBox
+@onready var animation_player_blade_vfx = $Model/RootNode/VFX/AnimationPlayer_BladeVFX
 
 
 const maxHealth = 3
@@ -25,11 +27,14 @@ var controllable = true
 var isInvincible = false
 var uncontrollableRemain = 0
 var getHurtCooldown = 1
+var meleeAttackCooldown = 0.6
+var meleeAttackDamage = 10
 
 signal currentHealthUpdated(newValue)
 
 func _ready():
 	currentHealth = maxHealth 
+	area_3d_hit_box.monitoring = false
 
 func _process(delta):
 	handleMovementVFX()
@@ -50,6 +55,16 @@ func _process(delta):
 			uncontrollableRemain = 0
 			controllable = true
 	
+	if controllable == true && Input.is_action_just_pressed("MeleeAttack"):
+		controllable = false
+		uncontrollableRemain += meleeAttackCooldown
+		
+		#animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
+		#animation_player_blade_vfx.play("PlayerBladeVFX")
+		
+		area_3d_hit_box.monitoring = true 
+		await get_tree().create_timer(0.3).timeout
+		area_3d_hit_box.monitoring = false
 
 func _physics_process(delta):
 	if controllable == false :
@@ -124,6 +139,7 @@ func applyDamage():
 		animation_tree.changeStateToDead()
 		#print ("The player is dead ")
 	else:
+		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		animation_player_material.play("Flash_Invincible")
 		
@@ -147,5 +163,7 @@ func addHealth():
 	
 	emit_signal("currentHealthUpdated", currentHealth)
 	return true
-	
-	
+
+
+func _on_area_3d_hit_box_body_entered(body):
+	body.applyDamage(meleeAttackDamage)
