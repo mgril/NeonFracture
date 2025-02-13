@@ -9,8 +9,6 @@ const JUMP_VELOCITY = 22
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 
-
-
 # there is a problem gravity is not adjust for the jump 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_tree = $Model/AnimationTree
@@ -25,6 +23,8 @@ const maxHealth = 3
 var currentHealth
 var controllable = true 
 var isInvincible = false
+var uncontrollableRemain = 0
+var getHurtCooldown = 1
 
 signal currentHealthUpdated(newValue)
 
@@ -33,7 +33,9 @@ func _ready():
 
 func _process(delta):
 	handleMovementVFX()
-	
+	if currentHealth <= 0:
+		return
+		
 	animation_tree.set("parameters/StateMachine/GroundMovement/blend_position", abs(velocity.x))
 	animation_tree.set("parameters/StateMachine/Airborne/blend_position", velocity.y)
 	
@@ -41,6 +43,12 @@ func _process(delta):
 		animation_tree.changeStateToNormal()
 	else: 
 		animation_tree.changeStateToAirBorne()
+
+	if controllable == false && currentHealth > 0 : 
+		uncontrollableRemain -= delta
+		if uncontrollableRemain <= 0:
+			uncontrollableRemain = 0
+			controllable = true
 	
 
 func _physics_process(delta):
@@ -107,6 +115,7 @@ func applyDamage():
 		
 	currentHealth -= 1
 	controllable = false
+	uncontrollableRemain += getHurtCooldown
 	isInvincible = true
 	emit_signal("currentHealthUpdated", currentHealth)
 	print(currentHealth)
@@ -117,9 +126,8 @@ func applyDamage():
 	else:
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		animation_player_material.play("Flash_Invincible")
-		await get_tree().create_timer(0.9).timeout
-		controllable = true
-		await get_tree().create_timer(1).timeout
+		
+		await get_tree().create_timer(2.0).timeout
 		animation_player_material.play("RESET")
 		isInvincible = false
 	
