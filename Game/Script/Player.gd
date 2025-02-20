@@ -22,6 +22,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 const maxHealth = 3
 
 var currentHealth
+var currentFragment = 0
 var controllable = true 
 var isInvincible = false
 var uncontrollableRemain = 0
@@ -49,7 +50,6 @@ func _process(delta):
 	
 	if is_on_floor():
 		animation_tree.changeStateToNormal()
-		print("hello")
 	else: 
 		animation_tree.changeStateToAirBorne()
 
@@ -170,6 +170,10 @@ func addHealth():
 	emit_signal("currentHealthUpdated", currentHealth)
 	return true
 
+func addFragment(): 
+	currentFragment += 1
+	emit_signal("currentFragmentUpdated", currentFragment)
+	return true
 
 func _on_area_3d_hit_box_body_entered(body):
 	body.applyDamage(meleeAttackDamage)
