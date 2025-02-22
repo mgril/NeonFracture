@@ -13,6 +13,8 @@ func _ready():
 
 	for item in get_children(): 
 		heartTextureRectArray.append(item)
+		# Add texture Rect en fonction de la vie max  
+		
 func updateHearts(newValue): 
 	var fullHeartNumber = newValue
 	

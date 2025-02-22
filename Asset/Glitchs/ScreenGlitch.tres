@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://khvcriafdp50"]
+
+[ext_resource type="Shader" path="res://Asset/Glitchs/ScreenGlitch.gdshader" id="1_j4j67"]
+
+[resource]
+shader = ExtResource("1_j4j67")
+shader_parameter/size = Vector2(32, 28)

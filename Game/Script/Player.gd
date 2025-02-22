@@ -34,6 +34,7 @@ var invincibilityRemain = 0
 var invincibilityDuration = 2
 
 signal currentHealthUpdated(newValue)
+signal currentFragmentUpdated(newValue)
 signal playerHasReachedTheDoor()
 
 func _ready():
@@ -173,6 +174,7 @@ func addHealth():
 func addFragment(): 
 	currentFragment += 1
 	emit_signal("currentFragmentUpdated", currentFragment)
+	print("good news")
 	return true
 
 func _on_area_3d_hit_box_body_entered(body):

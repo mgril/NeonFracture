@@ -21,6 +21,10 @@ window/layer_3=""
 window/layer_2=""
 window/layer_1=""
 
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true
+
 [input]
 
 MoveLeft={
