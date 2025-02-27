@@ -19,9 +19,8 @@ vec2 hash22(vec2 uv) {
 float noise(vec2 uv) {
     vec2 iuv = floor(uv);
     vec2 fuv = fract(uv);
-    
     vec2 blur = smoothstep(0.0, 1.0, fuv);
-    
+	
     return mix(mix(dot(hash22(iuv + vec2(0.0, 0.0)), fuv - vec2(0.0, 0.0)),
                    dot(hash22(iuv + vec2(1.0, 0.0)), fuv - vec2(1.0, 0.0)), blur.x),
                mix(dot(hash22(iuv + vec2(0.0, 1.0)), fuv - vec2(0.0, 1.0)),
@@ -51,12 +50,7 @@ void fragment(){
 	c.r = texture(screen_texture, vec2(SCREEN_UV.x + shift, uv.y)).r; 
 	c.g = texture(screen_texture, vec2(SCREEN_UV.x - shift, uv.y)).g; 
 	c.b = texture(screen_texture, vec2(SCREEN_UV.x , uv.y)).b; 
-	float red = texture(screen_texture, vec2(SCREEN_UV.x + shift, uv.y)).r; 
-	float blue = texture(screen_texture, vec2(SCREEN_UV.x , uv.y)).b; 
-	float green = texture(screen_texture, vec2(SCREEN_UV.x - shift, uv.y)).g; 
 	
-	
-	//COLOR = vec4(red,green, blue, 1.0);
 	COLOR.rgb = c;
 	//
 //
