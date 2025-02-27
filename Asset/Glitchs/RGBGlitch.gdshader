@@ -52,6 +52,5 @@ void fragment(){
 	c.b = texture(screen_texture, vec2(SCREEN_UV.x , uv.y)).b; 
 	
 	COLOR.rgb = c;
-	//
-//
+
 }
