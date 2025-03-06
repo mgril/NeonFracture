@@ -1,4 +1,5 @@
 extends Control
+@onready var ui_chromatique_glitch = $"../../UI_ChromatiqueGlitch"
 
 
 # Called when the node enters the scene tree for the first time.
@@ -10,6 +11,7 @@ func _ready():
 
 func showGameOverUI():
 	await get_tree().create_timer(1.0).timeout
+	ui_chromatique_glitch.set_visible(false)
 	visible = true
 
 func checkGameOver(newValue):

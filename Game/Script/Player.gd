@@ -17,6 +17,9 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var melee_vfx = $Model/RootNode/VFX/MELEE_VFX
 @onready var area_3d_hit_box = $Model/RootNode/Area3D_HitBox
 @onready var animation_player_blade_vfx = $Model/RootNode/VFX/AnimationPlayer_BladeVFX
+@onready var fragment_color_rect = $"../UI_ChromatiqueGlitch/ColorRect"
+@onready var ui_chromatique_glitch = $"../UI_ChromatiqueGlitch"
+
 
 
 const maxHealth = 3
@@ -174,9 +177,22 @@ func addHealth():
 func addFragment(): 
 	currentFragment += 1
 	emit_signal("currentFragmentUpdated", currentFragment)
-	print("good news")
+	updateLevelDifficulty()
 	return true
 
+func updateLevelDifficulty():
+	if ui_chromatique_glitch.is_visible():
+		var fragment_material = fragment_color_rect.material
+		var current_speed = fragment_material.get_shader_parameter("speed")
+		var amp_coeff = fragment_material.get_shader_parameter("amp_coeff")
+		fragment_material.set_shader_parameter("speed", current_speed * 5 )
+		fragment_material.set_shader_parameter("amp_coeff", amp_coeff * 1.5 )
+		current_speed = fragment_material.get_shader_parameter("speed")
+	else : 
+		ui_chromatique_glitch.set_visible(true)
+	
+	return 
+	
 func _on_area_3d_hit_box_body_entered(body):
 	body.applyDamage(meleeAttackDamage)
 	
