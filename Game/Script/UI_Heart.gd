@@ -24,3 +24,5 @@ func updateHearts(newValue):
 			item.texture = fullHeartTexture
 		else:
 			item.texture = emptyHeartTexture
+
+
