@@ -1,7 +1,6 @@
 class_name StartScreen extends CanvasLayer
 
 const gameplay_scene:PackedScene = preload("res://Game/main.tscn")
-#demander a sylavin pk ca fait tout peter 
 
 
 @onready var button_start = $Panel/HBoxContainer/VBoxContainer/GridContainer/TextureButton_Start
