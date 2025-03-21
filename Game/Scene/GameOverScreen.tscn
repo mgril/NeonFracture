@@ -1,0 +1,103 @@
+[gd_scene load_steps=9 format=3 uid="uid://rwlvcn3hg1js"]
+
+[ext_resource type="Script" path="res://Game/Script/UI_GameOver.gd" id="1_sxtg4"]
+[ext_resource type="Texture2D" uid="uid://ccxs78bwrumgx" path="res://Asset/UI/Text_GAMEOVER.png" id="2_fl5xg"]
+[ext_resource type="Texture2D" uid="uid://bycc3vdoqyxh7" path="res://Asset/UI/Restart_white.png" id="3_uy530"]
+[ext_resource type="Texture2D" uid="uid://c420kvkobkwh6" path="res://Asset/UI/Restart_blue.png" id="4_ujyaj"]
+[ext_resource type="Texture2D" uid="uid://dtlh4hixdaq6e" path="res://Asset/UI/Restart_purple.png" id="5_g2nmc"]
+[ext_resource type="Texture2D" uid="uid://dmpqo17fjo2qe" path="res://Asset/UI/Quit_white.png" id="6_7egf7"]
+[ext_resource type="Texture2D" uid="uid://hss8glvlqjm5" path="res://Asset/UI/Quit_blue.png" id="7_aiei4"]
+[ext_resource type="Texture2D" uid="uid://c66quks3ysi5s" path="res://Asset/UI/Quit_purple.png" id="8_8d7ut"]
+
+[node name="Control_GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sxtg4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.392157)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -316.0
+offset_top = -44.0
+offset_right = 316.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TextureRect_GameOver" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_fl5xg")
+
+[node name="ScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.180392, 0.917647, 0.988235, 1)
+theme_override_font_sizes/font_size = 32
+text = "Score : 0"
+horizontal_alignment = 1
+
+[node name="HighScoreLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.933333, 0.231373, 0.996078, 1)
+theme_override_font_sizes/font_size = 32
+text = "HighScore : "
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+tooltip_text = "
+
+"
+theme_override_constants/margin_top = 25
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
+
+[node name="TextureButton_Restart" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("3_uy530")
+texture_pressed = ExtResource("4_ujyaj")
+texture_hover = ExtResource("5_g2nmc")
+
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/GridContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(10, 10)
+layout_mode = 2
+size_flags_stretch_ratio = 0.18
+tooltip_text = "
+
+"
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="TextureButton_Quit" type="TextureButton" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+texture_normal = ExtResource("6_7egf7")
+texture_pressed = ExtResource("7_aiei4")
+texture_hover = ExtResource("8_8d7ut")
+
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton_Restart" to="." method="_on_texture_button_restart_pressed"]
+[connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton_Quit" to="." method="_on_texture_button_quit_pressed"]
