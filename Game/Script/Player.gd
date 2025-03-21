@@ -24,6 +24,8 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 const maxHealth = 3
 
+
+
 var currentHealth
 var currentFragment = 0
 var controllable = true 
@@ -151,7 +153,7 @@ func applyDamage():
 	
 	if currentHealth <= 0 :
 		animation_tree.changeStateToDead()
-		#print ("The player is dead ")
+		
 	else:
 		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
@@ -177,6 +179,8 @@ func addHealth():
 func addFragment(): 
 	currentFragment += 1
 	emit_signal("currentFragmentUpdated", currentFragment)
+	#Random respawn enmey and fragment 
+	
 	updateLevelDifficulty()
 	return true
 

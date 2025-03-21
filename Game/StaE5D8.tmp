@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://dvs0aghag854o"]
+
+[ext_resource type="Script" path="res://Game/StartScreen.gd" id="1_65d4v"]
+[ext_resource type="Texture2D" uid="uid://cj8k38ustr506" path="res://Asset/UI/NeonFracture.png" id="2_shyd2"]
+[ext_resource type="Texture2D" uid="uid://uxp8q65qhbhm" path="res://Asset/UI/Start_white.png" id="2_tgmnv"]
+[ext_resource type="Texture2D" uid="uid://ch7wggqo3dw1a" path="res://Asset/UI/Start_green.png" id="3_c3kq6"]
+[ext_resource type="Texture2D" uid="uid://cr1koo4e6334o" path="res://Asset/UI/Start_yellow.png" id="4_xpdd4"]
+[ext_resource type="Texture2D" uid="uid://dmpqo17fjo2qe" path="res://Asset/UI/Quit_white.png" id="5_bqxtx"]
+[ext_resource type="Texture2D" uid="uid://btmawmraj85pl" path="res://Asset/UI/Quit_green.png" id="6_h0sf0"]
+[ext_resource type="Texture2D" uid="uid://dl6hp7rluspyy" path="res://Asset/UI/Quit_yellow.png" id="7_8gelu"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_65d4v")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0.639216)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/HBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+texture = ExtResource("2_shyd2")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScoreLabel" type="Label" parent="Panel/HBoxContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="Panel/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureButton_Start" type="TextureButton" parent="Panel/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("2_tgmnv")
+texture_pressed = ExtResource("3_c3kq6")
+texture_hover = ExtResource("4_xpdd4")
+
+[node name="TextureButton_Quit" type="TextureButton" parent="Panel/HBoxContainer/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture_normal = ExtResource("5_bqxtx")
+texture_pressed = ExtResource("6_h0sf0")
+texture_hover = ExtResource("7_8gelu")
+
+[connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/GridContainer/TextureButton_Start" to="." method="_on_texture_button_start_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/VBoxContainer/GridContainer/TextureButton_Quit" to="." method="_on_texture_button_quit_pressed"]
