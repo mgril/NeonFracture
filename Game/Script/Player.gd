@@ -20,17 +20,13 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var fragment_color_rect = $"../UI_ChromatiqueGlitch/ColorRect"
 @onready var ui_chromatique_glitch = $"../UI_ChromatiqueGlitch"
 
-
-
 const maxHealth = 3
-
-
 
 var currentHealth
 var currentFragment = 0
-var controllable = true 
+var controllable = false
 var isInvincible = false
-var uncontrollableRemain = 0
+var uncontrollableRemain = 1
 var getHurtCooldown = 1
 var meleeAttackCooldown = 0.6
 var meleeAttackDamage = 10
@@ -50,7 +46,6 @@ func _process(delta):
 	handleMovementVFX()
 	if currentHealth <= 0:
 		return
-		
 	animation_tree.set("parameters/StateMachine/GroundMovement/blend_position", abs(velocity.x))
 	animation_tree.set("parameters/StateMachine/Airborne/blend_position", velocity.y)
 	
@@ -158,6 +153,7 @@ func applyDamage():
 		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		animation_player_material.play("Flash_Invincible")
+	
 	
 func updateHorizontalVelocity():
 	velocity.x = move_toward(velocity.x, 0, 1)
