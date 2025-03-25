@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 @onready var root_node = $Model/RootNode
 
-
 const SPEED = 10
 const JUMP_VELOCITY = 22 
 

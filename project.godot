@@ -15,6 +15,10 @@ run/main_scene="res://Game/Scene/StartGameScreen.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Global="*res://AutoLoads/global.gd"
+
 [display]
 
 window/layer_3=""
