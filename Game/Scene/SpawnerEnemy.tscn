@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjmtlqu6oq7oe"]
+
+[ext_resource type="Script" path="res://Game/Script/SpawnerEnemy.gd" id="1_8s7n8"]
+
+[node name="SpawnerEnemy" type="Node3D"]
+script = ExtResource("1_8s7n8")
+
+[node name="spawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[node name="PositionSpawnerArray" type="Node3D" parent="."]
+
+[node name="Position" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position2" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position3" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position4" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position5" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position6" type="Node3D" parent="PositionSpawnerArray"]
+
+[node name="Position7" type="Node3D" parent="PositionSpawnerArray"]
+
+[connection signal="timeout" from="spawnTimer" to="." method="_on_spawn_timer_timeout"]

@@ -18,6 +18,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_player_blade_vfx = $Model/RootNode/VFX/AnimationPlayer_BladeVFX
 @onready var fragment_color_rect = $"../UI_ChromatiqueGlitch/ColorRect"
 @onready var ui_chromatique_glitch = $"../UI_ChromatiqueGlitch"
+@onready var spawner_enemy = $"../SpawnerEnemy"
 
 const maxHealth = 3
 
@@ -187,6 +188,10 @@ func updateLevelDifficulty():
 		fragment_material.set_shader_parameter("speed", current_speed * 5 )
 		fragment_material.set_shader_parameter("amp_coeff", amp_coeff * 1.5 )
 		current_speed = fragment_material.get_shader_parameter("speed")
+		spawner_enemy.get_node("spawnTimer").wait_time -= 0.5
+		
+		
+
 	else : 
 		ui_chromatique_glitch.set_visible(true)
 	
