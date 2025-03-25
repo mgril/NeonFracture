@@ -6,7 +6,7 @@ class_name GameOver extends Control
 @onready var texture_button_restart = $VBoxContainer/GridContainer/TextureButton_Restart
 @onready var texture_button_quit = $VBoxContainer/GridContainer/TextureButton_Quit
 
-const gameover_scene:PackedScene = preload("res://Game/Scene/GameOverScreen.tscn")
+const gameover_scene:PackedScene = preload("res://Game/Scene/control_game_over.tscn")
 var gameover_menu:GameOver
 
 
@@ -18,7 +18,15 @@ func _ready():
 	visible = false
 
 func set_score(n:int):
-	score_label.text = "Final Score :" + str(n)
+	if n > Global.save_data.high_score:
+		score_label.text = "New High Score :" + str(n)
+		high_score_label.visible = false
+		Global.save_data.high_score = n 
+		Global.save_data.save()
+	else:
+		score_label.text = "Score :" + str(n)
+		high_score_label.visible = true
+		high_score_label.text = "High Score :" + str(Global.save_data.high_score)
 	
 	
 func showGameOverUI():
