@@ -34,7 +34,7 @@ var invincibilityDuration = 2
 signal currentHealthUpdated(newValue)
 signal currentFragmentUpdated(newValue)
 signal respawnNewFragment()
-signal playerHasReachedTheDoor()
+signal endGameSignal()
 
 func _ready():
 	currentHealth = maxHealth 
@@ -141,7 +141,7 @@ func applyDamage():
 	uncontrollableRemain += getHurtCooldown
 	isInvincible = true
 	invincibilityRemain = invincibilityDuration
-	emit_signal("currentHealthUpdated", currentHealth)
+	emit_signal("currentHealthUpdated", currentHealth) 
 	
 	if currentHealth <= 0 :
 		animation_tree.changeStateToDead()
@@ -150,7 +150,6 @@ func applyDamage():
 		animation_tree.set("parameters/OneShotMelee/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_ABORT)
 		animation_tree.set("parameters/OneShotHurt/request", AnimationNodeOneShot.ONE_SHOT_REQUEST_FIRE)
 		animation_player_material.play("Flash_Invincible")
-	
 	
 func updateHorizontalVelocity():
 	velocity.x = move_toward(velocity.x, 0, 1)
@@ -187,12 +186,10 @@ func updateLevelDifficulty():
 		spawner_enemy.get_node("spawnTimer").wait_time -= 0.5
 	else : 
 		ui_chromatique_glitch.set_visible(true)
-	
 	return 
 	
 func _on_area_3d_hit_box_body_entered(body):
 	body.applyDamage(meleeAttackDamage)
-	
 	var vfx_position = body.global_position
 	vfx_position.y += 1.5
 	vfx_position.z += 1
@@ -202,11 +199,4 @@ func _on_area_3d_hit_box_body_entered(body):
 		item.restart()
 
 func endGame():
-	controllable = false
-	uncontrollableRemain = -1
-	emit_signal("playerHasReachedTheDoor")
-	
-	isInvincible = true
-	invincibilityRemain = -1
-	animation_player_material.play("RESET")
-	
+	emit_signal("endGameSignal", 0)

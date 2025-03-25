@@ -9,12 +9,11 @@ class_name GameOver extends Control
 const gameover_scene:PackedScene = preload("res://Game/Scene/control_game_over.tscn")
 var gameover_menu:GameOver
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var player = get_tree().get_root().get_node("Root").get_node("Player")
 	player.currentHealthUpdated.connect(checkGameOver)
-	player.playerHasReachedTheDoor.connect(showGameOverUI)
+	player.endGameSignal.connect(checkGameOver)
 	visible = false
 
 func set_score(n:int):
@@ -39,6 +38,7 @@ func checkGameOver(newValue):
 		var player = get_tree().get_root().get_node("Root").get_node("Player")
 		set_score(player.currentFragment)
 		showGameOverUI()
+	
 
 
 func _on_texture_button_restart_pressed():
@@ -48,11 +48,4 @@ func _on_texture_button_restart_pressed():
 func _on_texture_button_quit_pressed():
 	get_tree().quit()
 	
-func _notification(what):
-	#match what:
-		#NOTIFICATION_ENTER_TREE:
-			#get_tree().paused = true
-		#NOTIFICATION_EXIT_TREE:
-			#get_tree().paused = false
-	pass
 		

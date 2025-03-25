@@ -11,7 +11,4 @@ func respawnFragment():
 	get_parent().add_child(newFragment)
 
 	var positionPoint = get_child(randi_range(0, get_child_count()-1))
-	
-	# Faire un tableau de random position 
 	newFragment.global_position = positionPoint.global_position
-	

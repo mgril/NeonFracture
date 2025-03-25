@@ -13,11 +13,10 @@ func time_left_to_live():
 	var second = int(time_left) % 60
 	return [minute, second]
 	
-
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	label.text = "%02d:%02d" % time_left_to_live()
 
-
 func _on_timer_timeout():
-	pass # Replace with function body.
+	var player = get_tree().get_root().get_node("Root").get_node("Player") 
+	player.endGame()
