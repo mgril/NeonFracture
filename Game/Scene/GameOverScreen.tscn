@@ -1,13 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://dap5ecqch5mar"]
+[gd_scene load_steps=9 format=3 uid="uid://d2fkawu6eghni"]
 
-[ext_resource type="Script" path="res://Game/Script/UI_GameOver.gd" id="1_octvi"]
-[ext_resource type="Texture2D" uid="uid://ccxs78bwrumgx" path="res://Asset/UI/Text_GAMEOVER.png" id="2_koeld"]
-[ext_resource type="Texture2D" uid="uid://bycc3vdoqyxh7" path="res://Asset/UI/Restart_white.png" id="3_31xol"]
-[ext_resource type="Texture2D" uid="uid://c420kvkobkwh6" path="res://Asset/UI/Restart_blue.png" id="4_om4lw"]
-[ext_resource type="Texture2D" uid="uid://dtlh4hixdaq6e" path="res://Asset/UI/Restart_purple.png" id="5_pybej"]
-[ext_resource type="Texture2D" uid="uid://dmpqo17fjo2qe" path="res://Asset/UI/Quit_white.png" id="6_yyit7"]
-[ext_resource type="Texture2D" uid="uid://hss8glvlqjm5" path="res://Asset/UI/Quit_blue.png" id="7_ilgo2"]
-[ext_resource type="Texture2D" uid="uid://c66quks3ysi5s" path="res://Asset/UI/Quit_purple.png" id="8_ryayd"]
+[ext_resource type="Script" path="res://Game/Script/UI_GameOver.gd" id="1_o8idc"]
+[ext_resource type="Texture2D" uid="uid://ccxs78bwrumgx" path="res://Asset/UI/Text_GAMEOVER.png" id="2_1ne8g"]
+[ext_resource type="Texture2D" uid="uid://bycc3vdoqyxh7" path="res://Asset/UI/Restart_white.png" id="3_2wobj"]
+[ext_resource type="Texture2D" uid="uid://c420kvkobkwh6" path="res://Asset/UI/Restart_blue.png" id="4_2efsf"]
+[ext_resource type="Texture2D" uid="uid://dtlh4hixdaq6e" path="res://Asset/UI/Restart_purple.png" id="5_i7411"]
+[ext_resource type="Texture2D" uid="uid://dmpqo17fjo2qe" path="res://Asset/UI/Quit_white.png" id="6_0apws"]
+[ext_resource type="Texture2D" uid="uid://hss8glvlqjm5" path="res://Asset/UI/Quit_blue.png" id="7_j3j4w"]
+[ext_resource type="Texture2D" uid="uid://c66quks3ysi5s" path="res://Asset/UI/Quit_purple.png" id="8_5k141"]
 
 [node name="Control_GameOver" type="Control"]
 layout_mode = 3
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_octvi")
+script = ExtResource("1_o8idc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -44,7 +44,7 @@ alignment = 1
 
 [node name="TextureRect_GameOver" type="TextureRect" parent="VBoxContainer"]
 layout_mode = 2
-texture = ExtResource("2_koeld")
+texture = ExtResource("2_1ne8g")
 
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
@@ -77,9 +77,9 @@ columns = 3
 [node name="TextureButton_Restart" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("3_31xol")
-texture_pressed = ExtResource("4_om4lw")
-texture_hover = ExtResource("5_pybej")
+texture_normal = ExtResource("3_2wobj")
+texture_pressed = ExtResource("4_2efsf")
+texture_hover = ExtResource("5_i7411")
 
 [node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer/GridContainer"]
 clip_contents = true
@@ -95,9 +95,9 @@ theme_override_constants/margin_right = 10
 [node name="TextureButton_Quit" type="TextureButton" parent="VBoxContainer/GridContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-texture_normal = ExtResource("6_yyit7")
-texture_pressed = ExtResource("7_ilgo2")
-texture_hover = ExtResource("8_ryayd")
+texture_normal = ExtResource("6_0apws")
+texture_pressed = ExtResource("7_j3j4w")
+texture_hover = ExtResource("8_5k141")
 
 [connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton_Restart" to="." method="_on_texture_button_restart_pressed"]
 [connection signal="pressed" from="VBoxContainer/GridContainer/TextureButton_Quit" to="." method="_on_texture_button_quit_pressed"]

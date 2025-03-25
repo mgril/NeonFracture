@@ -6,7 +6,7 @@ class_name GameOver extends Control
 @onready var texture_button_restart = $VBoxContainer/GridContainer/TextureButton_Restart
 @onready var texture_button_quit = $VBoxContainer/GridContainer/TextureButton_Quit
 
-const gameover_scene:PackedScene = preload("res://Game/Scene/control_game_over.tscn")
+const gameover_scene:PackedScene = preload("res://Game/Scene/GameOverScreen.tscn")
 var gameover_menu:GameOver
 
 
