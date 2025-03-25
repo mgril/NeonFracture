@@ -17,3 +17,7 @@ func time_left_to_live():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	label.text = "%02d:%02d" % time_left_to_live()
+
+
+func _on_timer_timeout():
+	pass # Replace with function body.

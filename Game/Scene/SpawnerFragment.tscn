@@ -1,0 +1,18 @@
+[gd_scene load_steps=2 format=3 uid="uid://cvm1ew73qekmh"]
+
+[ext_resource type="Script" path="res://Game/Script/SpawnerFragment.gd" id="1_djtxu"]
+
+[node name="SpawnerFragment" type="Node3D"]
+script = ExtResource("1_djtxu")
+
+[node name="Position" type="Node3D" parent="."]
+
+[node name="Position2" type="Node3D" parent="."]
+
+[node name="Position3" type="Node3D" parent="."]
+
+[node name="Position4" type="Node3D" parent="."]
+
+[node name="Position5" type="Node3D" parent="."]
+
+[node name="Position6" type="Node3D" parent="."]

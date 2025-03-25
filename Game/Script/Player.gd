@@ -5,8 +5,6 @@ extends CharacterBody3D
 const SPEED = 10
 const JUMP_VELOCITY = 22 
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-
 # there is a problem gravity is not adjust for the jump 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var animation_tree = $Model/AnimationTree
@@ -30,12 +28,12 @@ var uncontrollableRemain = 1
 var getHurtCooldown = 1
 var meleeAttackCooldown = 0.6
 var meleeAttackDamage = 10
-
 var invincibilityRemain = 0
 var invincibilityDuration = 2
 
 signal currentHealthUpdated(newValue)
 signal currentFragmentUpdated(newValue)
+signal respawnNewFragment()
 signal playerHasReachedTheDoor()
 
 func _ready():
@@ -144,7 +142,6 @@ func applyDamage():
 	isInvincible = true
 	invincibilityRemain = invincibilityDuration
 	emit_signal("currentHealthUpdated", currentHealth)
-	print(currentHealth)
 	
 	if currentHealth <= 0 :
 		animation_tree.changeStateToDead()
@@ -175,8 +172,7 @@ func addHealth():
 func addFragment(): 
 	currentFragment += 1
 	emit_signal("currentFragmentUpdated", currentFragment)
-	#Random respawn enmey and fragment 
-	
+	emit_signal("respawnNewFragment")
 	updateLevelDifficulty()
 	return true
 
@@ -189,9 +185,6 @@ func updateLevelDifficulty():
 		fragment_material.set_shader_parameter("amp_coeff", amp_coeff * 1.5 )
 		current_speed = fragment_material.get_shader_parameter("speed")
 		spawner_enemy.get_node("spawnTimer").wait_time -= 0.5
-		
-		
-
 	else : 
 		ui_chromatique_glitch.set_visible(true)
 	
@@ -208,7 +201,7 @@ func _on_area_3d_hit_box_body_entered(body):
 	for item in melee_vfx.get_children():
 		item.restart()
 
-func reachedTheDoor():
+func endGame():
 	controllable = false
 	uncontrollableRemain = -1
 	emit_signal("playerHasReachedTheDoor")

@@ -9,7 +9,7 @@ func _on_spawn_timer_timeout():
 	get_parent().add_child(newEnemy)
 	
 	var PositionArray = get_node("PositionSpawnerArray")
-	var positionPoint = PositionArray.get_child(randi_range(0, PositionArray.get_child_count()))
+	var positionPoint = PositionArray.get_child(randi_range(0, PositionArray.get_child_count()-1))
 	
 	# Faire unn tableau de random position 
 	newEnemy.global_position = positionPoint.global_position

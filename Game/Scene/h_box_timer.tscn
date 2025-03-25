@@ -1,0 +1,26 @@
+[gd_scene load_steps=2 format=3 uid="uid://b47nhnsjokimh"]
+
+[ext_resource type="Script" path="res://Game/Script/HealthTimer.gd" id="1_ickww"]
+
+[node name="HBoxTimer" type="HBoxContainer"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -64.0
+offset_right = 64.0
+offset_bottom = 70.0
+grow_horizontal = 2
+script = ExtResource("1_ickww")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 60.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.827451, 0.137255, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 15
+theme_override_font_sizes/font_size = 50
+text = "00:00"
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
