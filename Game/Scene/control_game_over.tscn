@@ -46,6 +46,15 @@ alignment = 1
 layout_mode = 2
 texture = ExtResource("2_p4f7l")
 
+[node name="MarginContainer2" type="MarginContainer" parent="VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+tooltip_text = "
+
+"
+theme_override_constants/margin_top = 25
+
 [node name="ScoreLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.180392, 0.917647, 0.988235, 1)

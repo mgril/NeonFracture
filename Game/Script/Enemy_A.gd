@@ -19,6 +19,7 @@ var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var currentHealth = 20
 var direction
 var facingRight = true
+var timeToDie = 5
 
 func _ready():
 	animation_player.play("NPC_01_WALK")
@@ -26,8 +27,7 @@ func _physics_process(delta):
 	
 	if currentHealth <= 0: 
 		return
-		
-		
+
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y -= gravity * delta * 5
@@ -61,4 +61,11 @@ func applyDamage(damage : int):
 	if currentHealth <= 0:
 		animation_player.play("NPC_01_DEAD")
 		collision_shape_3d.set_deferred("disabled", true)
-		#area_3d_hit_box.monitoring = false
+		waitAndDie(3)
+		
+		
+func waitAndDie(seconds: float) -> void:
+	await get_tree().create_timer(seconds).timeout
+	queue_free()
+		
+	
